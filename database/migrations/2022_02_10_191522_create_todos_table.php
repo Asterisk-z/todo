@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->enum('isPublic', ['yes', 'no']);
+            $table->enum('isCompleted', ['yes', 'no']);
+            $table->foreignId('user_id')->constrained('users');
+            $table->timestamp('end_at');
             $table->timestamps();
+            $table->softDeletes();  
         });
     }
 

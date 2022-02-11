@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Todo;
 use Illuminate\Http\Request;
 
-class TodoController extends Controller
+class WelcomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $mytasks = Todo::where('user_id', auth()->user()->id)->get();
-        return view('todo.index', compact('mytasks'));
+        //
     }
 
     /**
@@ -42,10 +40,10 @@ class TodoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Todo  $todo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Todo $todo)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class TodoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Todo  $todo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Todo $todo)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +63,10 @@ class TodoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Todo  $todo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class TodoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Todo  $todo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
+    public function destroy($id)
     {
         //
     }
