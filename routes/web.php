@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TodoController;
+use App\Models\Todo;
+use App\Models\User;
+use Carbon\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +18,16 @@ use App\Http\Controllers\TodoController;
 |
 */
 
-Route::view('/', 'welcome');
+Route::get('/', function() {
+    $geoData = file_get_contents('http://ip-api.com/php/'.request()->ip().'');
+    $data = unserialize($geoData);
+    $generalTasks = Todo::where('isPublic', 'yes')->with('user')->paginate(10);
+    $timezone = $data['timezone'];
+
+    return view('welcome', compact('generalTasks', 'timezone'));
+});
+
+
 
 Auth::routes();
 

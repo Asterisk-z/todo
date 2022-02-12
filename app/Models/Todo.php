@@ -28,4 +28,8 @@ class Todo extends Model
         'deleted_at',
     ];
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
 }
