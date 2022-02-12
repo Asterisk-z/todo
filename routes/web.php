@@ -21,7 +21,7 @@ use Carbon\Carbon;
 Route::get('/', function() {
     $geoData = file_get_contents('http://ip-api.com/php/'.request()->ip().'');
     $data = unserialize($geoData);
-    $generalTasks = Todo::where('isPublic', 'yes')->with('user')->paginate(10);
+    $generalTasks = Todo::where('isPublic', 'yes')->with('user')->orderBy('created_at', 'ASC')->paginate(10);
     $timezone = $data['timezone'];
 
     return view('welcome', compact('generalTasks', 'timezone'));
